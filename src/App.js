@@ -27,9 +27,6 @@ class App extends Component {
 const map2App = (state) => {
   return {
     ...state,
-    // smurfs: state.smurfs,
-    // isLoading: state.smurfs,
-    // error: state.error
   }
 }
 

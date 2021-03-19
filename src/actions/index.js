@@ -8,6 +8,7 @@ export const FETCH_SMURFS_START = 'FETCH_SMURFS_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_SPELLS_FAILURE';
 export const ADD_NEW_SMURF = 'ADD_NEW_SMURF';
+export const SET_ERROR = 'SET_ERROR';
 
 export const fetchSmurfs = () => {
   return (dispatch) => {
@@ -30,4 +31,8 @@ export const fetchSmurfs = () => {
   
 export const addNewSmurf = (feature) => {
   return { type: ADD_NEW_SMURF, payload: feature}
+}
+
+export const setError = (error) => {
+  return {type: SET_ERROR, payload: error}
 }

@@ -6,10 +6,9 @@ import { fetchSmurfs } from '../actions'
 import Loader from 'react-loader-spinner'
 
  const SmurfList = (props)=> {
-  
-     useEffect(() => {
-         props.fetchSmurfs()
-     }, [])
+    useEffect(() => {
+    props.fetchSmurfs()
+    }, [])
      
      return (<div className="listContainer">
         {props.isLoading ? <Loader type='Circles' color='#00BFFF' height={100} width={100} timeout={3000}/> : null}
@@ -17,17 +16,14 @@ import Loader from 'react-loader-spinner'
             return <Smurf key={item.id} smurf={item}/>    
         })}
         {props.error ? <p style={{color: 'red'}}>{props.error}</p>  : null}
-         
     </div>
     );
 }
 
 const mapStateToProps = (state) => {
   return {
-    //   ...state,
-      smurfs: state.smurfs,
-      isLoading: state.isLoading,
-    error: state.error
+    ...state,
+   
   };
 };
 

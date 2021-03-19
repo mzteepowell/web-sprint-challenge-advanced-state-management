@@ -1,4 +1,4 @@
-import { ADD_NEW_SMURF, FETCH_FAILURE, FETCH_SMURFS_START, FETCH_SUCCESS } from "../actions";
+import { ADD_NEW_SMURF, FETCH_FAILURE, FETCH_SMURFS_START, FETCH_SUCCESS, SET_ERROR } from "../actions";
 
 export const initialState = {
   smurfs: [],
@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
         smurfs: [
           ...state.smurfs,
           action.payload,
-        ]
+        ],
+
       }
     case FETCH_SUCCESS:
       return {
@@ -32,6 +33,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload
+      }
+    }
+    case SET_ERROR: {
+      return {
+        ...state,
+        error: "Name, position and nickname fields are required."
       }
     }
     default:
