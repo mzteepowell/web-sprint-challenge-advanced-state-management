@@ -20,15 +20,18 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            errorMessage = "Name, position and nickname fields are required.";
+            props.setError()
+        }
+        else {
+            props.addNewSmurf(state)
+            console.log(props)
         }
     }
 
-    const errorMessage = "";
 
     return(<section>
         <h2>Add Smurf</h2>
-        <form onSubmit={()=> addNewSmurf({...props.smurf, id: Date.now() })}>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="name">Name:</label><br/>
                 <input onChange={handleChange} value={state.name} name="name" id="name" />
@@ -46,16 +49,15 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                props.errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.errorMessage}</div>
             }
             <button>Submit Smurf</button>
         </form>
     </section>);
 }
 const mapStateToProps = (state) => {
-  return {
-    ...state,
-   
+    return {
+      ...state   
   };
 };
 export default connect(mapStateToProps, {addNewSmurf, setError})(AddForm);

@@ -3,7 +3,7 @@ import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 import { connect } from 'react-redux';
-import { addNewSmurf, fetchSmurfs } from './actions'
+import { addNewSmurf, fetchSmurfs, setError} from './actions'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
@@ -31,7 +31,7 @@ const map2App = (state) => {
 }
 
 const map2Dispatch = (dispatch) => {
-  return (addNewSmurf) 
+  return (addNewSmurf, setError) 
 }
 export default connect(map2App, map2Dispatch)(App);
 

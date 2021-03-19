@@ -29,10 +29,20 @@ export const fetchSmurfs = () => {
   }
 }
   
-export const addNewSmurf = (feature) => {
-  return { type: ADD_NEW_SMURF, payload: feature}
+export const addNewSmurf = (smurf) =>  {
+  return (dispatch) => {
+    axios.post('http://localhost:3333/smurfs', smurf)
+      .then((res) => {
+        dispatch({ type: FETCH_SUCCESS, payload: res.data })
+      })
+      .catch((err) => {
+        dispatch({
+          type: FETCH_FAILURE, payload: err.res.data
+        })
+      })
+  }
 }
 
-export const setError = (error) => {
-  return {type: SET_ERROR, payload: error}
+export const setError = () => {
+  return (dispatch)=> dispatch({type: SET_ERROR})
 }

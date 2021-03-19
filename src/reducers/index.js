@@ -3,7 +3,7 @@ import { ADD_NEW_SMURF, FETCH_FAILURE, FETCH_SMURFS_START, FETCH_SUCCESS, SET_ER
 export const initialState = {
   smurfs: [],
   isLoading: false,
-  error: ''
+  errorMessage: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -32,13 +32,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        errorMessage: action.payload
       }
     }
     case SET_ERROR: {
       return {
         ...state,
-        error: "Name, position and nickname fields are required."
+        errorMessage: "Name, position and nickname fields are required."
       }
     }
     default:
