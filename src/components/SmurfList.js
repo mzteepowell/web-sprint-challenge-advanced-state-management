@@ -1,26 +1,37 @@
 import React from 'react';
 import Smurf from './Smurf';
+import { useEffect } from 'react';
+import { connect } from "react-redux";
+import { fetchSmurfs } from '../actions'
+import Loader from 'react-loader-spinner'
 
- const SmurfList = ()=> {
-    const isLoading = false;
-    const testSmurf = {
-        id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-        name:'Poppa Smurf',
-        position:'Village Leader',
-        nickname: 'Pops',
-        description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
-    }
-
-    if (isLoading) {
-        return <h1>Loading...</h1>;
-    }
-
-    return(<div className="listContainer">
-        <Smurf smurf={testSmurf}/>
-    </div>);
+ const SmurfList = (props)=> {
+  
+     useEffect(() => {
+         props.fetchSmurfs()
+     }, [])
+     
+     return (<div className="listContainer">
+        {props.isLoading ? <Loader type='Circles' color='#00BFFF' height={100} width={100} timeout={3000}/> : null}
+        {props.smurfs.map(item => {
+            return <Smurf key={item.id} smurf={item}/>    
+        })}
+        {props.error ? <p style={{color: 'red'}}>{props.error}</p>  : null}
+         
+    </div>
+    );
 }
 
-export default SmurfList;
+const mapStateToProps = (state) => {
+  return {
+    //   ...state,
+      smurfs: state.smurfs,
+      isLoading: state.isLoading,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps, {fetchSmurfs})(SmurfList);
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.
