@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addNewSmurf, setError } from '../actions'
+import  useSmurfList from './hooks/useSmurfList'
 
 const AddForm = (props) => {
-    const [state, setState] = useState({
+    const [state, setState] = useSmurfList({
+        id: Date.now(),
         name:"",
         position:"",
         nickname:"",
@@ -34,7 +36,7 @@ const AddForm = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="name">Name:</label><br/>
-                <input onChange={handleChange} value={state.name} name="name" id="name" />
+                <input onChange={handleChange} value={state.name} name="name" id='name' />
             </div>
             <div className="form-group">
                 <label htmlFor="position">Position:</label><br/>
