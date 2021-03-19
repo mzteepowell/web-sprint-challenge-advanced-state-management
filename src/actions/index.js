@@ -7,6 +7,7 @@ import axios from 'axios';
 export const FETCH_SMURFS_START = 'FETCH_SMURFS_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_SPELLS_FAILURE';
+export const ADD_NEW_SMURF = 'ADD_NEW_SMURF';
 
 export const fetchSmurfs = () => {
   return (dispatch) => {
@@ -24,4 +25,9 @@ export const fetchSmurfs = () => {
           type: FETCH_FAILURE, payload: err.message
         })
       })
-  }}
+  }
+}
+  
+export const addNewSmurf = (feature) => {
+  return { type: ADD_NEW_SMURF, payload: feature}
+}
