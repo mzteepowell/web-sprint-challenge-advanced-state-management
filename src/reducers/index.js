@@ -1,8 +1,12 @@
 
 export const initialState = {
+  smurfs: [],
+  isLoading: false,
+  error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action) => {
+  
 }
 
 export default reducer;
